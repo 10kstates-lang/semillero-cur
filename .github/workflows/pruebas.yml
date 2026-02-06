@@ -1,4 +1,4 @@
-name: Java CI con Gradle
+name: Java CI Final con H2 y JDK21
 
 on:
   push:
