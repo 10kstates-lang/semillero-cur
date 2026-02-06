@@ -1,0 +1,27 @@
+name: Java CI con Gradle
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. Descargar el código
+        uses: actions/checkout@v4
+
+      - name: 2. Configurar Java 21 (Entorno estable)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: 3. Configurar Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: 4. Ejecutar Pruebas Unitarias (Mockito)
+        run: ./gradlew test
