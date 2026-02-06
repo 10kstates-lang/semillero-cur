@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Semillero CUR</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+<h1>Participantes del Semillero CUR</h1>
+<p>Estado: Conectado a MySQL (Base de datos: semillero_2026)</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Programa</th>
+        <th>Correo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="estudiante : ${estudiantes}">
+        <td th:text="${estudiante.id}">1</td>
+        <td th:text="${estudiante.nombre}">Nombre</td>
+        <td th:text="${estudiante.programa}">Programa</td>
+        <td th:text="${estudiante.correo}">Correo</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
