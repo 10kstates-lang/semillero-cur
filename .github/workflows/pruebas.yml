@@ -2,9 +2,9 @@ name: Java CI Final con H2 y JDK21
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "unidad-2" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master", "unidad-2" ]
 
 jobs:
   build:
