@@ -23,10 +23,17 @@ jobs:
       - name: 3. Configurar Gradle
         uses: gradle/actions/setup-gradle@v3
 
-      - name: 3.1 Corregir permisos del ejecutable
+      - name: 3.1 Corregir permisos (Para los dos microservicios)
         run: |
-          git update-index --chmod=+x gradlew
-          chmod +x gradlew
+          chmod +x estudiante-service/gradlew
+          chmod +x semillero-service/gradlew
 
-      - name: 4. Ejecutar Pruebas Unitarias (Mockito)
-        run: ./gradlew test
+      - name: 4. Ejecutar Pruebas - Microservicio Estudiantes
+        run: |
+          cd estudiante-service
+          ./gradlew test
+
+      - name: 5. Ejecutar Pruebas - Microservicio Semilleros
+        run: |
+          cd semillero-service
+          ./gradlew test
