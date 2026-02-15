@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Plataforma Semilleros CUR</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; background-color: #f8f9fa; color: #333; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { color: #0056b3; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin-top: 0; }
+        h2 { color: #495057; margin-top: 30px; font-size: 1.4rem; }
+        table { border-collapse: collapse; width: 100%; margin-top: 15px; }
+        th, td { border: 1px solid #dee2e6; padding: 12px; text-align: left; }
+        th { background-color: #e9ecef; color: #495057; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        .header-section { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .btn { padding: 10px 20px; background-color: #0d6efd; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background 0.3s; }
+        .btn:hover { background-color: #0b5ed7; }
+        .badge { background-color: #17a2b8; color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header-section">
+        <h1>Plataforma Semilleros CUR</h1>
+        <a href="/nuevo" class="btn">+ Registrar Estudiante</a>
+    </div>
+
+    <h2>Estudiantes Registrados</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre Completo</th>
+            <th>Programa</th>
+            <th>Correo</th>
+            <th>ID Semillero</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="estudiante : ${estudiantes}">
+            <td th:text="${estudiante.id}"></td>
+            <td th:text="${estudiante.nombre}"></td>
+            <td th:text="${estudiante.programa}"></td>
+            <td th:text="${estudiante.correo}"></td>
+            <td>
+                <span th:if="${estudiante.semilleroId != null}" th:text="${estudiante.semilleroId}" class="badge"></span>
+                <span th:if="${estudiante.semilleroId == null}" style="color: gray; font-style: italic;">Sin asignar</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Oferta de Semilleros</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre del Semillero</th>
+            <th>Área / Descripción</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="semillero : ${semilleros}">
+            <td th:text="${semillero.id}"></td>
+            <td th:text="${semillero.nombre}"></td>
+            <td th:text="${semillero.descripcion}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

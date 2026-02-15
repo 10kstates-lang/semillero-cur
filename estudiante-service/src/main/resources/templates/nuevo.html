@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrar Estudiante</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; background-color: #f8f9fa; color: #333; }
+    .container { max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    h1 { color: #0056b3; text-align: center; margin-bottom: 20px; font-size: 1.8rem; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 8px; font-weight: 600; color: #495057; }
+    input, select { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ced4da; border-radius: 4px; font-size: 1rem; }
+    input:focus, select:focus { border-color: #80bdff; outline: none; box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); }
+    .btn-container { display: flex; justify-content: space-between; margin-top: 30px; }
+    .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: background 0.3s; }
+    .btn-save { background-color: #198754; color: white; }
+    .btn-save:hover { background-color: #157347; }
+    .btn-back { background-color: #6c757d; color: white; text-decoration: none; text-align: center; }
+    .btn-back:hover { background-color: #5c636a; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Nuevo Registro</h1>
+
+  <form action="/nuevo" method="post">
+    <div class="form-group">
+      <label>Nombre Completo</label>
+      <input type="text" name="nombre" placeholder="Ej. Juan Pérez" required>
+    </div>
+
+    <div class="form-group">
+      <label>Programa Académico</label>
+      <input type="text" name="programa" placeholder="Ej. Ingeniería de Sistemas" required>
+    </div>
+
+    <div class="form-group">
+      <label>Correo Electrónico</label>
+      <input type="email" name="correo" placeholder="usuario@cur.edu.co" required>
+    </div>
+
+    <div class="form-group">
+      <label>Asignar Semillero</label>
+      <select name="semilleroId" required>
+        <option value="" disabled selected>-- Seleccione una opción --</option>
+        <option th:each="semillero : ${semilleros}"
+                th:value="${semillero.id}"
+                th:text="${semillero.nombre}">
+        </option>
+      </select>
+    </div>
+
+    <div class="btn-container">
+      <a href="/" class="btn btn-back">Cancelar</a>
+      <button type="submit" class="btn btn-save">Guardar Estudiante</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>
